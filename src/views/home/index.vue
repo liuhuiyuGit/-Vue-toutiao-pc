@@ -1,9 +1,9 @@
 <template>
-  <router-view></router-view>
+<div>
+    主页面
+</div>
 </template>
-
 <script>
-
 export default {
 }
 </script>
