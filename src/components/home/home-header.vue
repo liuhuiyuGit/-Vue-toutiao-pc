@@ -1,5 +1,4 @@
 <template>
-  <div>
     <el-row type="flex" class="row-bg" justify="space-between">
 
       <el-col :span="6">
@@ -12,7 +11,7 @@
       <el-col :span="3">
         <div class="grid-content bg-purple right">
           <img src="../../assets/imgs/avatar.jpg" alt>
-          <el-dropdown trigger="click">
+          <el-dropdown trigger="click" class="list">
             <span class="el-dropdown-link">
               我是56
               <i class="el-icon-arrow-down el-icon--right"></i>
@@ -29,41 +28,34 @@
       </el-col>
 
     </el-row>
-  </div>
 </template>
 <script>
 export default {}
 </script>
 <style lang='less' scoped>
-.row-bg {
-  .left {
-    font-size: 20px;
-    margin-top: 13px;
-    position: relative;
-    span {
-      font-size: 14px;
-      position: absolute;
-      top: 5px;
-      left: 25px
+.row-bg{
+  .left{
+    margin-top: 15px;
+    i{
+      font-size: 20px;
     }
   }
-  .right {
-      position: relative;
-    img {
+  .right{
+    margin-top: 15px;
+    position: relative;
+    img{
+      border-radius: 50%;
       width: 35px;
       height: 35px;
-      border-radius: 50%;
-      position: absolute;
-      top: 15px
     }
-    span {
-      line-height: 35px;
-      font-size: 14px;
+    .list{
+      display: block;
+      width: 70px;
       position: absolute;
-      width: 200px;
-      right: -250px;
-      top:  -2px;
+      bottom: 12px;
+      left: 50px
     }
+
   }
 }
 </style>
