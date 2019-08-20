@@ -30,14 +30,14 @@ export default {
       if (value) {
         callback()
       } else {
-        callback(new Error('您还没有阅读协议'))
+        callback(new Error('您还没有同意阅读协议'))
       }
     }
     return {
       FormData: {
         mobile: '',
         code: '',
-        check: true
+        check: false
       },
       rules: {
         mobile: [
@@ -65,6 +65,11 @@ export default {
           }).then(res => {
             window.localStorage.setItem('user-info', JSON.stringify(res.data.data))
             this.$router.push('/home')
+          }).catch(() => {
+            this.$message({
+              message: '用户名或则密码有误',
+              type: 'warning'
+            })
           })
         }
       })
