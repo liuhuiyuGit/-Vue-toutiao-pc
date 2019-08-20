@@ -6,7 +6,7 @@
         </el-aside>
         <el-container>
             <el-header>
-                头部
+                <home-header></home-header>
             </el-header>
             <el-main>
                 主要内容
@@ -16,11 +16,7 @@
 </div>
 </template>
 <script>
-import homeLeft from '../../components/home/home-left.vue'
 export default {
-  components: {
-    'home-left': homeLeft
-  }
 }
 </script>
 <style lang="less" scoped>
