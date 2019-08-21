@@ -41,7 +41,7 @@ export default {
     jump (command) {
       if (command === 'a') {
         // 跳转到个人信息面板
-        this.$router.push('./home')
+        this.$router.push('/home')
       } else if (command === 'b') {
         // 跳转的github
         window.location.href = 'https://github.com/liuhuiyuGit/-Vue-toutiao-pc/commit/bd3f5046ddbd7a8ed772468e5f7cff1e11c2d303'
@@ -85,7 +85,7 @@ export default {
     }
     .list{
       display: block;
-      width: 100px;
+      width: 120px;
       position: absolute;
       bottom: 12px;
       left: 50px
