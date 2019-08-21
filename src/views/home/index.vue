@@ -8,8 +8,8 @@
             <el-header>
                 <home-header></home-header>
             </el-header>
-            <el-main>
-                主要内容
+            <el-main class="homeview">
+                <router-view></router-view>
             </el-main>
         </el-container>
     </el-container>
@@ -23,5 +23,8 @@ export default {
     .homeLeft{
         height: 100vh;
         background-color: #323745;
+    }
+    .homeview{
+        padding: 0;
     }
 </style>

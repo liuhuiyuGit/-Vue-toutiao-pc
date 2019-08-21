@@ -63,13 +63,9 @@ export default {
             url: '/authorizations',
             data: this.FormData
           }).then(res => {
-            window.localStorage.setItem('user-info', JSON.stringify(res.data.data))
+            // console.log(res.data)
+            window.localStorage.setItem('user-info', JSON.stringify(res.data))
             this.$router.push('/home')
-          }).catch(() => {
-            this.$message({
-              message: '用户名或则密码有误',
-              type: 'warning'
-            })
           })
         }
       })
