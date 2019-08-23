@@ -1,6 +1,10 @@
 import axios from 'axios'
 import { Message } from 'element-ui'
+import JSONBig from 'json-bigint'
 axios.defaults.baseURL = 'http://ttapi.research.itcast.cn/mp/v1_0'
+axios.defaults.transformResponse = [function (data) {
+  return data ? JSONBig.parse(data) : {}
+}]
 // 请求拦截器
 axios.interceptors.request.use(function (config) {
   let user = window.localStorage.getItem('user-info')
@@ -43,6 +47,6 @@ axios.interceptors.response.use(function (response) {
       break
   }
   Message({ message, type: 'warning' })
-  return new Promise()
+  return new Promise(function () {})
 })
 export default axios

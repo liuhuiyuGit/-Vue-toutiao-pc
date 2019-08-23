@@ -21,7 +21,7 @@ export default {
 </script>
 <style lang="less" scoped>
     .homeLeft{
-        height: 100vh;
+        min-height: 100vh;
         background-color: #323745;
     }
     .homeview{

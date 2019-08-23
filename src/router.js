@@ -40,7 +40,7 @@ export default new Router({
           component: publish
         },
         {
-          path: '/commentlist',
+          path: '/contents',
           component: commentlist
         },
         {
@@ -48,7 +48,7 @@ export default new Router({
           component: material
         },
         {
-          path: '/contents',
+          path: '/commentlist',
           component: contents
         },
         {
