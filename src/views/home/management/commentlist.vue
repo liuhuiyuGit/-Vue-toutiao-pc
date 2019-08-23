@@ -24,7 +24,7 @@
         </el-table-column>
       </el-table>
       <el-row type='flex' justify='center' style='margin:20px 0'>
-          <el-pagination :current-page='page.currentPage' background :page-size="page.pageSize" layout="prev, pager, next" :total="page.total" @current-change='changPage'></el-pagination>
+          <el-pagination  background :page-size="page.pageSize" layout="prev, pager, next" :total="page.total" @current-change='changPage'></el-pagination>
       </el-row>
     </div>
   </el-card>
@@ -88,7 +88,6 @@ export default {
     },
     // 点击页码获取当前点击的页码赋值给当前页码属性
     changPage (page) {
-      console.log(page)
       this.page.currentPage = page
       this.getComments()
     }
