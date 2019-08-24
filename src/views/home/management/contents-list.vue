@@ -107,22 +107,22 @@ export default {
     }
   },
   methods: {
-    //
-    n1 () {
-      let property = {
-        status: this.form.status === '5' ? null : this.form.status,
-        channel_id: this.form.channel_id,
-        begin_pubdate: this.form.data && this.form.data.length > 0
-          ? this.form.data.length[0]
-          : null,
-        end_pubdate: this.form.data && this.form.date.length > 1
-          ? this.form.date[1]
-          : null,
-        page: this.page.currentPage,
-        per_page: this.page.pageSize
-      }
-      return property
-    },
+    // 封装一个函数用来存储params的值
+    // n1 () {
+    //   let property = {
+    //     status: this.form.status === '5' ? null : this.form.status,
+    //     channel_id: this.form.channel_id,
+    //     begin_pubdate: this.form.data && this.form.data.length > 0
+    //       ? this.form.data.length[0]
+    //       : null,
+    //     end_pubdate: this.form.data && this.form.date.length > 1
+    //       ? this.form.date[1]
+    //       : null,
+    //     page: this.page.currentPage,
+    //     per_page: this.page.pageSize
+    //   }
+    //   return property
+    // },
     // 分页事件
     pageChange (newPage) {
       this.page.currentPage = newPage
@@ -144,18 +144,8 @@ export default {
       //   console.log(res)
       //   this.list = res.data.results
       // })
-      this.getComments(this.n1())
-    },
-    // 获取数据
-    getComments (property) {
-      this.$axios({
-        url: '/articles',
-        params: { ...property }
-      }).then(res => {
-        this.list = res.data.results
-        // 总条数赋值
-        this.page.total = res.data.total_count
-      })
+      // this.getComments(thie.n1)
+      this.getComments()
     },
     // 三个选择条件变化都会触发这个函数
     refreshList () {
@@ -166,7 +156,32 @@ export default {
       // }).then(res => {
       //   this.list = res.data.results
       // })
-      this.getComments(this.n1())
+      // this.getComments(thie.n1)
+      this.getComments()
+    },
+    // 获取数据
+    // getComments (property) {
+    getComments () {
+      this.$axios({
+        url: '/articles',
+        // params：{...property}
+        params: {
+          status: this.form.status === '5' ? null : this.form.status,
+          channel_id: this.form.channel_id,
+          begin_pubdate: this.form.data && this.form.data.length > 0
+            ? this.form.data.length[0]
+            : null,
+          end_pubdate: this.form.data && this.form.date.length > 1
+            ? this.form.date[1]
+            : null,
+          page: this.page.currentPage,
+          per_page: this.page.pageSize
+        }
+      }).then(res => {
+        this.list = res.data.results
+        // 总条数赋值
+        this.page.total = res.data.total_count
+      })
     },
     // 获取频道信息
     getChannels () {
