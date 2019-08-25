@@ -7,6 +7,7 @@
       background-color="#353b4e"
       text-color="#adafb5"
       :router="true"
+      style="border-right:none;"
     >
       <el-menu-item index="/home">
         <i class="el-icon-s-home"></i>

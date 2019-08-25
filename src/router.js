@@ -40,6 +40,10 @@ export default new Router({
           component: publish
         },
         {
+          path: '/publish/:articleId',
+          component: publish
+        },
+        {
           path: '/contents',
           component: commentlist
         },

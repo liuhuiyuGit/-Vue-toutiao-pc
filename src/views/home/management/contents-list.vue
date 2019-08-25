@@ -60,10 +60,10 @@
             <span class="bottom">{{item.pubdate}}</span>
           </div>
           <div class="right">
-            <span>
+            <span @click="goEdit(item)" style="cursor:pointer;">
               <i class="el-icon-edit"></i>修改
             </span>
-            <span>
+            <span @click="delItem(item)" style="cursor:pointer;">
               <i class="el-icon-delete"></i> 删除
             </span>
           </div>
@@ -107,6 +107,21 @@ export default {
     }
   },
   methods: {
+    // 编辑接口
+    goEdit (item) {
+      this.$router.push(`/publish/${item.id.toString()}`)
+    },
+    // 删除接口
+    delItem (item) {
+      this.$confirm('您确定要删除该数据吗', '提示').then(() => {
+        this.$axios({
+          method: 'delete',
+          url: `/articles/${item.id.toString()}`
+        }).then(() => {
+          this.getComments()
+        })
+      })
+    },
     // 封装一个函数用来存储params的值
     // n1 () {
     //   let property = {
