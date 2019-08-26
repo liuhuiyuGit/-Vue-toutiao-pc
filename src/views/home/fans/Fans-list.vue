@@ -8,4 +8,7 @@ export default {
 }
 </script>
 <style>
+     #nprogress .bar {
+      background: yellow !important;
+    }
 </style>

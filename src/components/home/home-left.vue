@@ -1,13 +1,15 @@
 <template>
   <div>
     <div class="title">
-      <img src="../../assets/imgs/logo_admin.png" alt>
+      <img :style="{'width': !iscollapse? '120px' : '30px' }" :src="!iscollapse?oldImage:newImage" alt>
     </div>
     <el-menu
       background-color="#353b4e"
       text-color="#adafb5"
       :router="true"
       style="border-right:none;"
+      :collapse='iscollapse'
+      :collapse-transition=false
     >
       <el-menu-item index="/home">
         <i class="el-icon-s-home"></i>
@@ -44,15 +46,26 @@
   </div>
 </template>
 <script>
-export default {}
+import eventBus from '../../utils/eventBus.js'
+export default {
+  data () {
+    return {
+      iscollapse: false,
+      oldImage: require('../../assets/imgs/logo_admin.png'),
+      newImage: require('../../assets/imgs/toutiao.png')
+    }
+  },
+  created () {
+    eventBus.$on('isDisabled', () => {
+      this.iscollapse = !this.iscollapse
+    })
+  }
+}
 </script>
 <style lang='less' scoped>
 .title {
   padding: 16px 0;
   text-align: center;
   background-color: #2e2f32;
-  img {
-    width: 120px;
-  }
 }
 </style>

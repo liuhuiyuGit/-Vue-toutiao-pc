@@ -29,9 +29,13 @@
         <el-button @click="saveUserInfo" type="primary">保存信息</el-button>
       </el-form-item>
     </el-form>
+    <el-upload class="head-img" action :show-file-list="false" :http-request="uploadImg">
+      <img :src="formData.photo" alt>
+    </el-upload>
   </el-card>
 </template>
 <script>
+import eventBus from '../../utils/eventBus.js'
 export default {
   data () {
     return {
@@ -60,6 +64,20 @@ export default {
     }
   },
   methods: {
+    uploadImg (params) {
+      let data = new FormData()
+      data.append('photo', params.file)
+      this.$axios({
+        method: 'patch',
+        url: '/user/photo',
+        data
+      }).then(res => {
+        this.formData.photo = res.data.photo
+        // 头像更新后抛出事件 header页面监听 触发事件后再此调用后台数据
+        // 因为是在eventBus中注册的事件 所以两个页面都可以有联系
+        eventBus.$emit('updateUserInfoSuccess')
+      })
+    },
     //  点击保存触发的事件
     saveUserInfo () {
       this.$refs.userForm.validate(isOK => {
@@ -67,13 +85,15 @@ export default {
           this.$axios({
             method: 'patch',
             url: '/user/profile',
-            data: 'this.formData'
+            data: this.formData
           }).then(res => {
             this.$message({ message: '保存成功', type: 'success' })
+            eventBus.$emit('updateUserInfoSuccess')
           })
         }
       })
     },
+    // 计入页面获取原先定义的数据 让他显示在页面上
     getUserInfo () {
       this.$axios({
         url: '/user/profile'
@@ -87,5 +107,18 @@ export default {
   }
 }
 </script>
-<style>
+<style lang='less' scoped>
+.box-card {
+  position: relative;
+  .head-img {
+    img {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      position: absolute;
+      top: 100px;
+      left: 560px;
+    }
+  }
+}
 </style>

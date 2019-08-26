@@ -3,7 +3,7 @@
 
       <el-col :span="6">
         <div class="grid-content bg-purple left">
-          <i class="el-icon-s-unfold"></i>
+          <i @click="iscollapse" :class="icon"></i>
           <span>江苏传智播客教育科技股份有限公司</span>
         </div>
       </el-col>
@@ -30,18 +30,25 @@
 
         </div>
       </el-col>
-
     </el-row>
 </template>
 <script>
+import eventBus from '../../utils/eventBus.js'
 export default {
   data () {
     return {
       user: {},
-      defaultImg: require('../../assets/imgs/avatar.jpg')
+      defaultImg: require('../../assets/imgs/avatar.jpg'),
+      icon: 'el-icon-s-fold'
     }
   },
   methods: {
+    // 点击设置left页面的打开或则关闭
+    iscollapse () {
+      // 抛出一个事件
+      eventBus.$emit('isDisabled')
+      this.icon = this.icon === 'el-icon-s-fold' ? 'el-icon-s-unfold' : 'el-icon-s-fold'
+    },
     jump (command) {
       if (command === 'a') {
         // 跳转到个人信息面板
@@ -55,6 +62,7 @@ export default {
         this.$router.push('/login')
       }
     },
+    // 获取用户信息
     getUserInfo () {
       // let userInfo = window.localStorage.getItem('user-info') // 获取用户存储信息 存储信息里有token
       // let token = userInfo ? JSON.parse(userInfo).token : null // 获取token
@@ -68,6 +76,10 @@ export default {
   },
   created () {
     this.getUserInfo()
+    // 监听自定的事件 两个组件通过eventBus联系 事件触发后执行回调函数再次调用
+    eventBus.$on('updateUserInfoSuccess', () => {
+      this.getUserInfo()
+    })
   }
 }
 </script>

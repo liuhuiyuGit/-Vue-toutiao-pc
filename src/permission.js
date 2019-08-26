@@ -1,5 +1,7 @@
 import router from './router'
+import nprogress from 'nprogress'
 router.beforeEach(function (to, form, next) {
+  nprogress.start()
   if (to.path.startsWith('/home')) {
     var result = window.localStorage.getItem('user-info')
     if (result) {
@@ -16,5 +18,8 @@ router.beforeEach(function (to, form, next) {
   } else {
     next()
   }
+})
+router.afterEach(() => {
+  nprogress.done()
 })
 export default router

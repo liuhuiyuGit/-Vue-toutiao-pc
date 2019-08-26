@@ -7,6 +7,7 @@ import './styles/index.less'
 import axios from './utils/axios.config.js'
 // import axios from 'axios'
 import abc from './components/index'
+import 'nprogress/nprogress.css'
 Vue.prototype.$axios = axios
 // axios.defaults.baseURL = 'http://ttapi.research.itcast.cn/mp/v1_0'
 Vue.use(abc)
