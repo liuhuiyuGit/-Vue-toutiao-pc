@@ -143,10 +143,11 @@ export default {
     .avatar-uploader{
         width: 200px;
         height: 200px;
+        border: 1px dashed  #ccc;
+        text-align: center;
         .el-icon-plus{
             font-size: 100px;
             line-height: 200px;
-            margin-left: 20px;
         }
     }
 }
