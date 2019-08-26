@@ -65,6 +65,7 @@ export default {
   },
   methods: {
     uploadImg (params) {
+      // this.formData.photo = params.file
       let data = new FormData()
       data.append('photo', params.file)
       this.$axios({
@@ -92,6 +93,20 @@ export default {
           })
         }
       })
+      // if (this.formData.photo !== '') {
+      //   let data = new FormData()
+      //   data.append('photo', this.formData.photo)
+      //   this.$axios({
+      //     method: 'patch',
+      //     url: '/user/photo',
+      //     data
+      //   }).then(res => {
+      //     this.formData.photo = res.data.photo
+      //     // 头像更新后抛出事件 header页面监听 触发事件后再此调用后台数据
+      //     // 因为是在eventBus中注册的事件 所以两个页面都可以有联系
+      //     eventBus.$emit('updateUserInfoSuccess')
+      //   })
+      // }
     },
     // 计入页面获取原先定义的数据 让他显示在页面上
     getUserInfo () {

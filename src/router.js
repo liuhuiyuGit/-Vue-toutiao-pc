@@ -12,10 +12,15 @@ import FansList from './views/home/fans/Fans-list.vue'
 import mageText from './views/home/fans/mage-text.vue'
 import portrait from './views/home/fans/portrait.vue'
 import account from './views/home/account.vue'
+import Error from './components/404.vue'
 Vue.use(Router)
 
 export default new Router({
   routes: [
+    {
+      path: '*',
+      component: Error
+    },
     {
       path: '/login',
       name: 'login',
