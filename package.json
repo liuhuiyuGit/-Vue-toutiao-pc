@@ -13,7 +13,7 @@
     "core-js": "^2.6.5",
     "echarts": "^4.2.1",
     "element-ui": "^2.11.1",
-    "json-bigint": "^0.3.0",
+    "json-bigint": "^1.0.0",
     "less": "3.9.0",
     "less-loader": "^5.0.0",
     "nprogress": "^0.2.0",
